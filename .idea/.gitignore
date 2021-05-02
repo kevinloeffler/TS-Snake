@@ -3,3 +3,8 @@
 /workspace.xml
 # Editor-based HTTP Client requests
 /httpRequests/
+
+# User
+/build/
+/build/app.js
+/build/app.js.map
