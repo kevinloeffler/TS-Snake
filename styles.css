@@ -1,0 +1,20 @@
+body {
+    background-color: #1f1f23;
+}
+
+#board {
+    /*width: 420px;*/
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#board div {
+    width: 36px;
+    height: 36px;
+    margin: 2px;
+    background-color: #323232;
+}
+
+#board .active {
+    background-color: indianred;
+}
