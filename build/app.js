@@ -6,6 +6,29 @@ import { Point } from './point.js';
 buildBoard();
 const startPoint = new Point(Math.round(BOARDSIZE / 2) - 1, Math.round(BOARDSIZE / 2) - 1);
 const SNAKE = new Snake(startPoint, Dir.Left);
+let currentInput = Dir.Left;
+function handleInput(key) {
+    switch (key.key.toUpperCase()) {
+        case 'ARROWUP':
+        case 'W':
+            currentInput = Dir.Up;
+            break;
+        case 'ARROWRIGHT':
+        case 'D':
+            currentInput = Dir.Right;
+            break;
+        case 'ARROWDOWN':
+        case 'S':
+            currentInput = Dir.Down;
+            break;
+        case 'ARROWLEFT':
+        case 'A':
+            currentInput = Dir.Left;
+            break;
+    }
+}
+document.addEventListener('keydown', handleInput);
+// Testing
 renderFrame();
 SNAKE.move(Dir.Left);
 renderFrame();
