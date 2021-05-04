@@ -1,5 +1,5 @@
 // Game Constants
-const SPEED = 100
+const SPEED = 1000
 const BOARDSIZE = 12
 /*
 interface Point {
