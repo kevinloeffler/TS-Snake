@@ -1,5 +1,6 @@
 import {BOARDSIZE, Dir} from './types.js'
 import {Point} from './point.js';
+import {foodPosition, updateFood} from './food.js';
 
 class SnakeBody {
     direction: Dir
@@ -65,11 +66,28 @@ class Snake {
 
     move (direction: Dir): void {
         this.head.move(direction)
+        if (!this.checkPosition()) {
+            // Todo: handle game over logic
+            console.log('Game over')
+        }
+        if (this.checkFood()) {
+            this.grow()
+            console.log('eaten')
+        }
     }
 
     checkPosition (): boolean {
         if (this.head.position.x < BOARDSIZE && this.head.position.x >= 0) {
             if (this.head.position.y < BOARDSIZE && this.head.position.y >= 0) {
+                return true
+            }
+        }
+        return false
+    }
+
+    checkFood (): boolean {
+        if (this.head.position.x === foodPosition.x) {
+            if (this.head.position.y === foodPosition.y) {
                 return true
             }
         }
@@ -85,7 +103,7 @@ class Snake {
             currentNode = currentNode.next
         }
         currentNode.append()
-
+        updateFood()
     }
 }
 

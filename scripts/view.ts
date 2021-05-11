@@ -1,6 +1,6 @@
 import {BOARDSIZE} from './types.js'
 import {SNAKE} from './app.js'
-import {Point} from './point.js';
+import {Point} from './point.js'
 
 // HTML Bindings
 const board = <HTMLElement>document.querySelector('#board')
