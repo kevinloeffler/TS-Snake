@@ -7,7 +7,6 @@ updateFood()
 function updateFood (): void {
     const x = Math.floor(Math.random() * BOARDSIZE)
     const y = Math.floor(Math.random() * BOARDSIZE)
-    console.log('food at: ' + x + ', ' + y)
     foodPosition = new Point(x, y)
 }
 

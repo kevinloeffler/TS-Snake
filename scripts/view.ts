@@ -27,7 +27,6 @@ function buildBoard () {
 function renderFrame (): void {
     resetBoard()
     renderFood(foodPosition)
-    console.log(SNAKE.getPositions())
     for (const pos of SNAKE.getPositions()) {
         activateField(pos)
     }
