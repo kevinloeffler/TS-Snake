@@ -1,4 +1,4 @@
-import {BOARDSIZE, Dir} from './types.js'
+import {BOARDSIZE, Dir, reduceSpeed} from './types.js'
 import {Point} from './point.js';
 import {foodPosition, updateFood} from './food.js';
 
@@ -19,7 +19,7 @@ class SnakeBody {
         this.nextDirection = this.direction
         this.direction = direction
 
-        this.position = this.calculateNewPosition(this.position, this.direction)
+        this.position = this.calculateNewPosition(this.direction)
 
         if (this.next) {
             this.next.move(this.nextDirection)
@@ -27,11 +27,11 @@ class SnakeBody {
     }
 
     append() {
-        const lastPoint: Point = this.calculateNewPosition(this.position, this.direction, -1)
+        const lastPoint: Point = this.calculateNewPosition(this.direction, -1)
         this.next = new SnakeBody(this.nextDirection, lastPoint)
     }
 
-    private calculateNewPosition (inputPosition: Point, inputDirection: Dir, offset: -1 | 1 = 1): Point {
+    private calculateNewPosition (inputDirection: Dir, offset: -1 | 1 = 1): Point {
         switch (inputDirection) {
             case Dir.Up:
                 return new Point(this.position.x, this.position.y - offset)
@@ -66,23 +66,31 @@ class Snake {
 
     move (direction: Dir): void {
         this.head.move(direction)
-        if (!this.checkPosition()) {
-            // Todo: handle game over logic
-            console.log('Game over')
-        }
         if (this.checkFood()) {
             this.grow()
             console.log('eaten')
         }
     }
 
-    checkPosition (): boolean {
-        if (this.head.position.x < BOARDSIZE && this.head.position.x >= 0) {
-            if (this.head.position.y < BOARDSIZE && this.head.position.y >= 0) {
-                return true
+    validPosition (): boolean {
+        // Check if snake is still on board
+        if (this.head.position.x >= BOARDSIZE || this.head.position.x < 0) {
+            console.log('invalid board position')
+            return false
+        } else if (this.head.position.y >= BOARDSIZE || this.head.position.y < 0) {
+            console.log('invalid board position')
+            return false
+        }
+        // Check if snake ate itself
+        let currentNode = this.head
+        while (currentNode.next !== null) {
+            currentNode = currentNode.next
+            if (this.head.position.x === currentNode.position.x && this.head.position.y === currentNode.position.y) {
+                console.log('invalid move')
+                return false
             }
         }
-        return false
+        return true
     }
 
     checkFood (): boolean {
@@ -104,6 +112,7 @@ class Snake {
         }
         currentNode.append()
         updateFood()
+        reduceSpeed()
     }
 }
 

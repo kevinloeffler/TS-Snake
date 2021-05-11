@@ -71,8 +71,7 @@ async function gameLoop () {
     }
 }
 
-gameLoop()
-    .then(msg => console.log(msg))
+gameLoop().then(msg => console.log(msg))
 
 // Testing
 /*
