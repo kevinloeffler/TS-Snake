@@ -62,12 +62,17 @@ async function gameLoop () {
     while (true) {
         validateInput()
         SNAKE.move(activeInput)
+        if (!SNAKE.validPosition()) {
+            return 'Game Over'
+        }
+
         renderFrame()
         await new Promise(r => setTimeout(r, SPEED))
     }
 }
 
 gameLoop()
+    .then(msg => console.log(msg))
 
 // Testing
 /*
