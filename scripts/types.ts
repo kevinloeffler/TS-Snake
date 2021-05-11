@@ -1,12 +1,7 @@
 // Game Constants
-const SPEED = 1000
+let SPEED = 600
 const BOARDSIZE = 12
-/*
-interface Point {
-    x: number
-    y: number
-}
-*/
+
 enum Dir {
     Up = 'UP',
     Right = 'RIGHT',
@@ -14,4 +9,9 @@ enum Dir {
     Left = 'Left'
 }
 
-export {Dir, BOARDSIZE, SPEED}
+function reduceSpeed (): void {
+    SPEED = Math.floor(SPEED * 0.9)
+    console.log('New Speed: ' + SPEED)
+}
+
+export {Dir, BOARDSIZE, SPEED, reduceSpeed}
