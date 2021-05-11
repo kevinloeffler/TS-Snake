@@ -18,3 +18,7 @@ body {
 #board .active {
     background-color: indianred;
 }
+
+#board .food {
+    background-color: aquamarine;
+}

@@ -1,6 +1,7 @@
 import {BOARDSIZE} from './types.js'
 import {SNAKE} from './app.js'
 import {Point} from './point.js'
+import {foodPosition} from './food.js'
 
 // HTML Bindings
 const board = <HTMLElement>document.querySelector('#board')
@@ -25,6 +26,7 @@ function buildBoard () {
 // Render
 function renderFrame (): void {
     resetBoard()
+    renderFood(foodPosition)
     console.log(SNAKE.getPositions())
     for (const pos of SNAKE.getPositions()) {
         activateField(pos)
@@ -34,13 +36,18 @@ function renderFrame (): void {
 function resetBoard (): void {
     const fields = board.children
     for (const field of fields) {
-        field.classList.remove('active')
+        field.classList.remove('active', 'food')
     }
 }
 
 function activateField (field: Point): void {
     const active = document.querySelector(`#pos${String(field.x)}${String(field.y)}`)
     active.classList.add('active')
+}
+
+function renderFood (field: Point): void {
+    const active = document.querySelector(`#pos${String(field.x)}${String(field.y)}`)
+    active.classList.add('food')
 }
 
 export {buildBoard, renderFrame}
