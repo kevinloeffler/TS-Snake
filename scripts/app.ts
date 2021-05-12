@@ -71,7 +71,11 @@ async function gameLoop () {
     }
 }
 
-gameLoop().then(msg => console.log(msg))
+function startGame () {
+    gameLoop().then(msg => console.log(msg))
+}
+
+document.querySelector('#start-game-btn').addEventListener('click', startGame)
 
 // Testing
 /*
