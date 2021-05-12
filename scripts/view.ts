@@ -3,7 +3,7 @@ import {SNAKE} from './app.js'
 import {Point} from './point.js'
 import {foodPosition} from './food.js'
 
-// HTML Bindings
+// HTML References
 const board = <HTMLElement>document.querySelector('#board')
 
 // Build Board
