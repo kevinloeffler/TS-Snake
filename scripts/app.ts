@@ -77,20 +77,4 @@ function startGame () {
 
 document.querySelector('#start-game-btn').addEventListener('click', startGame)
 
-// Testing
-/*
-renderFrame()
-SNAKE.move(Dir.Left)
-renderFrame()
-SNAKE.move(Dir.Left)
-renderFrame()
-SNAKE.grow()
-renderFrame()
-SNAKE.move(Dir.Left)
-renderFrame()
-SNAKE.move(Dir.Up)
-renderFrame()
-SNAKE.move(Dir.Up)
-renderFrame()
-*/
 export {SNAKE}
