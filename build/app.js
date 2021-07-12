@@ -70,12 +70,18 @@ function gameLoop() {
         while (true) {
             validateInput();
             SNAKE.move(activeInput);
+            if (!SNAKE.validPosition()) {
+                return 'Game Over';
+            }
             renderFrame();
             yield new Promise(r => setTimeout(r, SPEED));
         }
     });
 }
-gameLoop();
+function startGame() {
+    gameLoop().then(msg => console.log(msg));
+}
+document.querySelector('#start-game-btn').addEventListener('click', startGame);
 // Testing
 /*
 renderFrame()

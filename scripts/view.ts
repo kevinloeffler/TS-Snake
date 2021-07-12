@@ -14,7 +14,7 @@ function buildBoard () {
         for (let j = 0; j < BOARDSIZE; j++) {
             const field = document.createElement('div')
             field.setAttribute('class', 'field')
-            field.setAttribute('id', `pos${String(j)}${String(i)}`)
+            field.setAttribute('id', `pos${String(j)}-${String(i)}`)
             // field.setAttribute('data-x', String(j))
             // field.setAttribute('data-y', String(i))
             fragment.appendChild(field)
@@ -40,12 +40,12 @@ function resetBoard (): void {
 }
 
 function activateField (field: Point): void {
-    const active = document.querySelector(`#pos${String(field.x)}${String(field.y)}`)
+    const active = document.querySelector(`#pos${String(field.x)}-${String(field.y)}`)
     active.classList.add('active')
 }
 
 function renderFood (field: Point): void {
-    const active = document.querySelector(`#pos${String(field.x)}${String(field.y)}`)
+    const active = document.querySelector(`#pos${String(field.x)}-${String(field.y)}`)
     active.classList.add('food')
 }
 
