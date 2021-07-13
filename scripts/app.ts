@@ -1,15 +1,16 @@
-import {buildBoard, renderFrame} from './view.js'
+import {buildBoard, renderFrame, renderStartStopButton} from './view.js'
 import {Snake} from './snake.js'
-import {BOARDSIZE, Dir, SPEED} from './types.js'
+import {BOARDSIZE, Dir, setSpeed, SPEED} from './types.js'
 import {Point} from './point.js';
 
 // Init Game
 buildBoard()
 
 const startPoint = new Point(Math.round(BOARDSIZE / 2), Math.round(BOARDSIZE / 2) - 1)
-const SNAKE = new Snake(startPoint, Dir.Left)
+let SNAKE = new Snake(startPoint, Dir.Left)
 let nextInput: Dir = Dir.Left
 let activeInput: Dir = Dir.Left
+let gameIsActive: boolean = false
 
 function handleInput (key): void {
     switch (key.key.toUpperCase()) {
@@ -59,22 +60,47 @@ function validateInput () {
 document.addEventListener('keydown', handleInput)
 
 async function gameLoop () {
-    while (true) {
+    while (gameIsActive) {
         validateInput()
         SNAKE.move(activeInput)
         if (!SNAKE.validPosition()) {
+            gameIsActive = false
             return 'Game Over'
         }
 
         renderFrame()
         await new Promise(r => setTimeout(r, SPEED))
     }
+    return 'Game Stopped'
+}
+
+function getSpeed (): number {
+    const slider = <HTMLInputElement>document.querySelector('#speedInput')
+    return 1000 - parseInt(slider.value)
 }
 
 function startGame () {
-    gameLoop().then(msg => console.log(msg))
+    setSpeed(getSpeed())
+    renderStartStopButton('Stop Game')
+    gameIsActive = true
+    gameLoop().then(stopGame)//.then(msg => console.log(msg))
 }
 
-document.querySelector('#start-game-btn').addEventListener('click', startGame)
+function stopGame () {
+    SNAKE = new Snake(startPoint, Dir.Left)
+    renderStartStopButton('New Game')
+}
+
+function handleStartStopButton () {
+    if (gameIsActive) {
+        gameIsActive = false
+        stopGame()
+    } else {
+        gameIsActive = true
+        startGame()
+    }
+}
+
+document.querySelector('#start-game-btn').addEventListener('click', handleStartStopButton)
 
 export {SNAKE}
