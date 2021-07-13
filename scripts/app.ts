@@ -1,6 +1,6 @@
-import {buildBoard, renderFrame, renderStartStopButton} from './view.js'
+import {buildBoard, renderDifficulty, renderFrame, renderStartStopButton} from './view.js'
 import {Snake} from './snake.js'
-import {BOARDSIZE, Dir, setSpeed, SPEED} from './types.js'
+import {BOARDSIZE, Dir, LEVELS, setMaxSpeed, setSpeed, SPEED} from './types.js'
 import {Point} from './point.js';
 
 // Init Game
@@ -74,14 +74,20 @@ async function gameLoop () {
     return 'Game Stopped'
 }
 
-function getSpeed (): number {
+function getDifficulty (): {'name': string, 'startSpeed': number, 'maxSpeed': number} {
     const slider = <HTMLInputElement>document.querySelector('#speedInput')
-    return 1000 - parseInt(slider.value)
+    return LEVELS[parseInt(slider.value)]
 }
 
 function startGame () {
-    setSpeed(getSpeed())
+    const difficulty = getDifficulty()
+    /* Set Speeds */
+    setSpeed(difficulty.startSpeed)
+    setMaxSpeed(difficulty.maxSpeed)
+    /* Render UI */
+    renderDifficulty(difficulty.name) // TODO: should be rendered on input
     renderStartStopButton('Stop Game')
+    /* Start Game */
     gameIsActive = true
     gameLoop().then(stopGame)//.then(msg => console.log(msg))
 }
