@@ -14,11 +14,13 @@
     </div>
 </div>
 
-<section class="input-wrapper">
+<section id="input-wrapper">
     <div class="range-wrapper">
-        <label class="speedLabel" for="speedInput">Starting Speed</label>
-        <div id="speedText">Speed</div>
-        <input id="speedInput" type="range" min="0" max="800" step="200">
+        <div class="range-label-wrapper">
+            <label class="speedLabel" for="speedInput">Difficulty:</label>
+            <div id="speedText">Medium</div>
+        </div>
+        <input id="speedInput" type="range" min="0" max="5" step="1">
     </div>
     <button id="start-game-btn">Start Game</button>
 </section>
