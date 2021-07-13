@@ -36,11 +36,15 @@ body {
     justify-content: space-between;
 }
 
+#speed-text {
+    font-weight: bold;
+}
+
 /**************** SLIDER ****************/
 
 /* Reset Slider */
 
-#speedInput {
+#speed-input {
     -webkit-appearance: none;
     width: 200px;
     background: transparent;
@@ -49,7 +53,7 @@ body {
 
 /* Style Slider Thumb */
 
-#speedInput::-webkit-slider-thumb {
+#speed-input::-webkit-slider-thumb {
     -webkit-appearance: none;
     height: 16px;
     width: 16px;
@@ -63,7 +67,7 @@ body {
 
 /* Style Slider Track */
 
-#speedInput::-webkit-slider-runnable-track {
+#speed-input::-webkit-slider-runnable-track {
     width: 100%;
     height: 6px;
     border-radius: 6px;

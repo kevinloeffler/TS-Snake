@@ -75,7 +75,7 @@ async function gameLoop () {
 }
 
 function getDifficulty (): {'name': string, 'startSpeed': number, 'maxSpeed': number} {
-    const slider = <HTMLInputElement>document.querySelector('#speedInput')
+    const slider = <HTMLInputElement>document.querySelector('#speed-input')
     return LEVELS[parseInt(slider.value)]
 }
 
@@ -107,6 +107,12 @@ function handleStartStopButton () {
     }
 }
 
+function handleRangeChange () {
+    console.log('handleRangeChange')
+    renderDifficulty(getDifficulty().name)
+}
+
+document.querySelector('#speed-input').addEventListener('input', handleRangeChange)
 document.querySelector('#start-game-btn').addEventListener('click', handleStartStopButton)
 
-export {SNAKE}
+export {SNAKE, getDifficulty}
