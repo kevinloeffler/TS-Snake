@@ -1,5 +1,5 @@
 import {BOARDSIZE} from './types.js'
-import {SNAKE} from './app.js'
+import {getDifficulty, SNAKE} from './app.js'
 import {Point} from './point.js'
 import {foodPosition} from './food.js'
 
@@ -7,7 +7,7 @@ import {foodPosition} from './food.js'
 const board = <HTMLElement>document.querySelector('#board')
 const startStopButton = document.querySelector('#start-game-btn')
 const inputSection = <HTMLElement>document.querySelector('#input-wrapper')
-const speedText = <HTMLElement>document.querySelector('#speedText')
+const speedText = <HTMLElement>document.querySelector('#speed-text')
 
 // Build Board
 function buildBoard () {
