@@ -6,10 +6,14 @@ import {foodPosition} from './food.js'
 // HTML References
 const board = <HTMLElement>document.querySelector('#board')
 const startStopButton = document.querySelector('#start-game-btn')
+const inputSection = <HTMLElement>document.querySelector('#input-wrapper')
+const speedText = <HTMLElement>document.querySelector('#speedText')
 
 // Build Board
 function buildBoard () {
-    board.style.width = `${40 * BOARDSIZE}px`
+    const sectionWidth = `${40 * BOARDSIZE}px`
+    board.style.width = sectionWidth
+    inputSection.style.width = sectionWidth
     const fragment = document.createDocumentFragment()
     for (let i = 0; i < BOARDSIZE; i++) {
         for (let j = 0; j < BOARDSIZE; j++) {
@@ -50,8 +54,12 @@ function renderFood (field: Point): void {
     active.classList.add('food')
 }
 
-function renderStartStopButton (text) {
+function renderStartStopButton (text: string) {
     startStopButton.textContent = text
 }
 
-export {buildBoard, renderFrame, renderStartStopButton}
+function renderDifficulty (text: string) {
+    speedText.textContent = text
+}
+
+export {buildBoard, renderFrame, renderStartStopButton, renderDifficulty}
