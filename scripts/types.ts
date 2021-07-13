@@ -15,8 +15,8 @@ const LEVELS = {
     1: {'name': 'Easy', 'startSpeed': 800, 'maxSpeed': 140},
     2: {'name': 'Medium', 'startSpeed': 600, 'maxSpeed': 140},
     3: {'name': 'Advanced', 'startSpeed': 400, 'maxSpeed': 120},
-    4: {'name': 'Hard', 'startSpeed': 300, 'maxSpeed': 100},
-    5: {'name': 'Maniac', 'startSpeed': 200, 'maxSpeed': 80},
+    4: {'name': 'Hard', 'startSpeed': 250, 'maxSpeed': 100},
+    5: {'name': 'Maniac', 'startSpeed': 160, 'maxSpeed': 70},
 }
 
 function reduceSpeed (): void {
