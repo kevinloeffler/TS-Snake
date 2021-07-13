@@ -14,4 +14,8 @@ function reduceSpeed (): void {
     console.log('New Speed: ' + SPEED)
 }
 
-export {Dir, BOARDSIZE, SPEED, reduceSpeed}
+function setSpeed (newSpeed: number) {
+    SPEED = newSpeed
+}
+
+export {Dir, BOARDSIZE, SPEED, reduceSpeed, setSpeed}
