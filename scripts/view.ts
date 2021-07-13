@@ -5,6 +5,7 @@ import {foodPosition} from './food.js'
 
 // HTML References
 const board = <HTMLElement>document.querySelector('#board')
+const startStopButton = document.querySelector('#start-game-btn')
 
 // Build Board
 function buildBoard () {
@@ -49,4 +50,8 @@ function renderFood (field: Point): void {
     active.classList.add('food')
 }
 
-export {buildBoard, renderFrame}
+function renderStartStopButton (text) {
+    startStopButton.textContent = text
+}
+
+export {buildBoard, renderFrame, renderStartStopButton}
