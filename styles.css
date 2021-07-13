@@ -25,9 +25,15 @@ body {
     background-color: aquamarine;
 }
 
-.input-wrapper {
+#input-wrapper {
     display: flex;
+    justify-content: space-between;
+    padding-top: 20px;
+}
 
+.range-label-wrapper {
+    display: flex;
+    justify-content: space-between;
 }
 
 /**************** SLIDER ****************/
@@ -38,6 +44,7 @@ body {
     -webkit-appearance: none;
     width: 200px;
     background: transparent;
+    margin-top: 20px;
 }
 
 /* Style Slider Thumb */
