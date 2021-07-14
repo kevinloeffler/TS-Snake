@@ -74,3 +74,40 @@ body {
     cursor: pointer;
     background: linear-gradient(90deg, rgba(100,195,28,1) 0%, rgba(255,204,4,1) 50%, rgba(255,0,0,1) 100%);
 }
+
+.arrow-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    background-color: #323232;
+}
+
+#arrow {
+    width: 8px;
+    height: 8px;
+    border-right: solid white 2px;
+    border-top: solid white 2px;
+}
+
+#arrow div {
+    width: 20px;
+    border-top: solid white 2px;
+    transform: rotateZ(-45deg) translateX(-45%) translateY(-2px);
+}
+
+.arrow-right {
+    transform: rotateZ(45deg) translate(4px, -4px);
+}
+
+.arrow-left {
+    transform: rotateZ(-135deg) translate(4px, -4px);
+}
+
+.arrow-up {
+    transform: rotateZ(-45deg) translate(4px, -4px);
+}
+
+.arrow-down {
+    transform: rotateZ(135deg) translate(4px, -4px);
+}

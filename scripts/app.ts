@@ -1,4 +1,4 @@
-import {buildBoard, renderDifficulty, renderFrame, renderStartStopButton} from './view.js'
+import {buildBoard, renderArrow, renderDifficulty, renderFrame, renderStartStopButton} from './view.js'
 import {Snake} from './snake.js'
 import {BOARDSIZE, Dir, LEVELS, setMaxSpeed, setSpeed, SPEED} from './types.js'
 import {Point} from './point.js';
@@ -34,26 +34,33 @@ function handleInput (key): void {
         case 'G':
             SNAKE.grow()
     }
+    if (validateInput(activeInput, nextInput)) {
+        renderArrow(nextInput)
+    } else {
+        renderArrow(activeInput)
+    }
 }
 
-function validateInput () {
-    switch (activeInput) {
+function validateInput (currentDirection: Dir, newDirection: Dir) : boolean {
+    switch (currentDirection) {
         case Dir.Up:
-            if (nextInput !== Dir.Down) {
-                activeInput = nextInput
+            if (newDirection !== Dir.Down) {
+                return true
             } break
         case Dir.Right:
-            if (nextInput !== Dir.Left) {
-                activeInput = nextInput
+            if (newDirection !== Dir.Left) {
+                return true
             } break
         case Dir.Down:
-            if (nextInput !== Dir.Up) {
-                activeInput = nextInput
+            if (newDirection !== Dir.Up) {
+                return true
             } break
         case Dir.Left:
-            if (nextInput !== Dir.Right) {
-                activeInput = nextInput
+            if (newDirection !== Dir.Right) {
+                return true
             } break
+        default:
+            return false
     }
 }
 
@@ -61,7 +68,9 @@ document.addEventListener('keydown', handleInput)
 
 async function gameLoop () {
     while (gameIsActive) {
-        validateInput()
+        if (validateInput(activeInput, nextInput)) {
+            activeInput = nextInput
+        }
         SNAKE.move(activeInput)
         if (!SNAKE.validPosition()) {
             gameIsActive = false

@@ -1,5 +1,5 @@
-import {BOARDSIZE} from './types.js'
-import {getDifficulty, SNAKE} from './app.js'
+import {BOARDSIZE, Dir} from './types.js'
+import {SNAKE} from './app.js'
 import {Point} from './point.js'
 import {foodPosition} from './food.js'
 
@@ -8,6 +8,7 @@ const board = <HTMLElement>document.querySelector('#board')
 const startStopButton = document.querySelector('#start-game-btn')
 const inputSection = <HTMLElement>document.querySelector('#input-wrapper')
 const speedText = <HTMLElement>document.querySelector('#speed-text')
+const arrow = <HTMLElement>document.querySelector('#arrow')
 
 // Build Board
 function buildBoard () {
@@ -62,4 +63,22 @@ function renderDifficulty (text: string) {
     speedText.textContent = text
 }
 
-export {buildBoard, renderFrame, renderStartStopButton, renderDifficulty}
+function renderArrow (orientation: Dir) {
+    arrow.classList.remove('arrow-right', 'arrow-left', 'arrow-up', 'arrow-down')
+    switch (orientation) {
+        case Dir.Left:
+            arrow.classList.add('arrow-left')
+            break
+        case Dir.Right:
+            arrow.classList.add('arrow-right')
+            break
+        case Dir.Up:
+            arrow.classList.add('arrow-up')
+            break
+        case Dir.Down:
+            arrow.classList.add('arrow-down')
+            break
+    }
+}
+
+export {buildBoard, renderFrame, renderStartStopButton, renderDifficulty, renderArrow}
