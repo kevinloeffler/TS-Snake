@@ -9,6 +9,7 @@ const startStopButton = document.querySelector('#start-game-btn')
 const inputSection = <HTMLElement>document.querySelector('#input-wrapper')
 const speedText = <HTMLElement>document.querySelector('#speed-text')
 const arrow = <HTMLElement>document.querySelector('#arrow')
+const counter = <HTMLElement>document.querySelector('#counter')
 
 // Build Board
 function buildBoard () {
@@ -81,4 +82,8 @@ function renderArrow (orientation: Dir) {
     }
 }
 
-export {buildBoard, renderFrame, renderStartStopButton, renderDifficulty, renderArrow}
+function renderCounter (score: number) {
+    counter.innerText = score.toString()
+}
+
+export {buildBoard, renderFrame, renderStartStopButton, renderDifficulty, renderArrow, renderCounter}

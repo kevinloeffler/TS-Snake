@@ -1,6 +1,7 @@
 import {BOARDSIZE, Dir, reduceSpeed} from './types.js'
 import {Point} from './point.js';
 import {foodPosition, updateFood} from './food.js';
+import {renderCounter} from './view.js'
 
 class SnakeBody {
     direction: Dir
@@ -115,6 +116,7 @@ class Snake {
         currentNode.append()
         updateFood(currentlyOccupiedPoints)
         reduceSpeed()
+        renderCounter(this.length)
     }
 }
 
