@@ -104,14 +104,16 @@ class Snake {
 
     grow (): void {
         this.length++
+        let currentlyOccupiedPoints : [Point?] = []
         // this.head.append()
 
         let currentNode = this.head
         while (currentNode.next !== null) {
+            currentlyOccupiedPoints.push(currentNode.position)
             currentNode = currentNode.next
         }
         currentNode.append()
-        updateFood()
+        updateFood(currentlyOccupiedPoints)
         reduceSpeed()
     }
 }
